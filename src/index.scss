@@ -1,0 +1,18 @@
+$theme-colors: (
+  "primary": hotpink,
+  "danger": teal,
+);
+
+$enable-rounded: true;
+
+$body-bg: black;
+$body-color: white;
+
+$link-decoration: none;
+$border-radius: 1rem;
+$link-color: teal;
+
+@import "~bootstrap/scss/bootstrap";
+
+// this kind of thing: below?? 😂
+// $link-color: theme-colors("primary");
