@@ -31,6 +31,23 @@ const schema = yup.object().shape({
 // - "Controller" from react hook form (hopefully we don't need this - but we'll see)
 // Also: when do you import * as bla from 'bla'
 
+function InputWithFeedback({ name, type, register, errors, humanReadbleName }) {
+  return (
+    <>
+      <Form.Label>{humanReadbleName}</Form.Label>
+      <Form.Control
+        type={type}
+        name={name}
+        ref={register}
+        className={errors[name] ? "is-invalid" : ""} // { lastName: 'some error' }
+      />
+      <Form.Control.Feedback type="invalid">
+        <ErrorMessage errors={errors} name={name} />
+      </Form.Control.Feedback>
+    </>
+  );
+}
+
 function App() {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
@@ -61,16 +78,13 @@ function App() {
         onSubmit={handleSubmit(onSubmit)}
       >
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>First name</Form.Label>
-          <Form.Control
-            type="text"
+          <InputWithFeedback
+            humanReadbleName="First Name"
             name="firstName"
-            ref={register}
-            className={errors.firstName ? "is-invalid" : ""}
+            type="text"
+            errors={errors}
+            register={register}
           />
-          <Form.Control.Feedback type="invalid">
-            <ErrorMessage errors={errors} name="firstName" />
-          </Form.Control.Feedback>
           <Form.Label>Last name</Form.Label>
           <Form.Control
             type="text"
