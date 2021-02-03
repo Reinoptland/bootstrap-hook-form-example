@@ -31,3 +31,11 @@ $enable-rounded: false;
 Cheatsheet:
 
 https://bootstrapvars.com/
+
+## Making a from with react-hook-form
+
+- Why react hook form vs. making our own form
+- Alternatives: Formik
+
+- How to use it
+- How to use it with Bootstrap (we have to figure this out)

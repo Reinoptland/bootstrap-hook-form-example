@@ -11,17 +11,14 @@ function App() {
       className="p-1"
       style={{ backgroundColor: "white", height: "200vh" }}
     >
-      <Row className="justify-content-center m-5">
-        <Col md={2}>
-          <Button>HELLO</Button>
-        </Col>
-        <Col md={4} className="d-flex justify-content-center">
-          <Button>HELLO</Button>
-        </Col>
-        <Col md={2}>
-          <Button>HELLO</Button>
-        </Col>
-      </Row>
+      <form>
+        <label>First name</label>
+        <input type="text" name="firstName" />
+        <label>Last name</label>
+        <input type="text" name="lastName" />
+        <label>Email</label>
+        <input type="email" name="email" />
+      </form>
     </Container>
   );
 }
