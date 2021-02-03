@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 
 function App() {
   const { register, handleSubmit, errors } = useForm();
@@ -29,9 +30,8 @@ function App() {
             },
           })}
         />
-        {errors.firstName && errors.firstName.message && (
-          <p>{errors.firstName.message}</p>
-        )}
+        <ErrorMessage errors={errors} name="firstName" />
+        {/* {errors?.firstName?.message && <p>{errors.firstName.message}</p>} */}
         <label>Last name</label>
         <input type="text" name="lastName" ref={register} />
         <label>Email</label>
