@@ -7,9 +7,10 @@ import Button from "react-bootstrap/Button";
 import { useForm } from "react-hook-form";
 
 function App() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => console.log("VALUES:", data);
 
+  console.log("FORM ERRORS:", errors);
   return (
     <Container
       className="p-1"
@@ -17,7 +18,20 @@ function App() {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>First name</label>
-        <input type="text" name="firstName" ref={register} />
+        <input
+          type="text"
+          name="firstName"
+          ref={register({
+            required: "FILL THIS IN, SILLY PERSON",
+            minLength: {
+              value: 3,
+              message: "YOUR NAME HAS 3 LETTERS AT LEAST, FUCK YOU: BO!",
+            },
+          })}
+        />
+        {errors.firstName && errors.firstName.message && (
+          <p>{errors.firstName.message}</p>
+        )}
         <label>Last name</label>
         <input type="text" name="lastName" ref={register} />
         <label>Email</label>
