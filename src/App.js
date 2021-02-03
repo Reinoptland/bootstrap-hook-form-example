@@ -9,13 +9,25 @@ import { ErrorMessage } from "@hookform/error-message";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+const lang = "EN";
+
+function translateError() {
+  const messages = {
+    NL: "VUL DIT VELD IN, DOMKOP",
+    DE: "VUL DIESE FELD IN, DUMKOPF",
+    EN: "FILL THIS IN, SILLY PERSON, right ho",
+  };
+
+  return messages[lang];
+}
+
 const schema = yup.object().shape({
-  firstName: yup.string().min(3).required(),
+  firstName: yup.string().required(translateError),
   lastName: yup.string(),
   email: yup.string().email().required(),
 });
 
-// Custom error messages
+// Custom error messages -> just read yup docs, and pass a string or message
 // Also: how to bootstrappify this form??
 
 function App() {
